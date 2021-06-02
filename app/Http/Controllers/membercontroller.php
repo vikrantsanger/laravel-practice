@@ -15,20 +15,35 @@ class membercontroller extends Controller
     return view("list",['members'=>$data]);
   }
 
+
+  function addmember(Request $req)
+  {
+    $member= new member;
+    $member->name=$req->name;
+    $member->address=$req->address;
+    $member->email=$req->email;
+    $member->save();
+    return redirect()->route("list");
+  }
+
+
   function delete($id)
   {
     $data=member::find($id);
     $data->delete();
-    return redirect('list');
+    return redirect()->route('list');
   }
 
 
   function show($id)
   {
     $data = member::find($id);
-    return view('update', ['data'=>$data]) ;
     
+    return view('update', ['data'=>$data]) ;    
   }
+  
+  
+ 
 
   function update(Request $req)
   {
@@ -37,7 +52,7 @@ class membercontroller extends Controller
     $data->address=$req->address;
     $data->email=$req->email;
     $data->save();
-    return redirect("list");
+    return redirect()->route("list");
   }
   
 }

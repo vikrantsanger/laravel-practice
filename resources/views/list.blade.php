@@ -1,5 +1,5 @@
 <h1>lists</h1>
-<table border=1px >
+<table border=1px>
     <tr>
         <td>id</td>
         <td>name</td>
@@ -14,13 +14,14 @@
         <td>{{$member['address']}}</td>
         <td>{{$member['email']}}</td>
         <td>
-            <a href="{{'edit/'.$member['id']}}">edit</a>
-            <a href="{{'delete/'.$member['id']}}">delete</a>
+            <a href="{{route('edit',$member['id'])}}">edit</a>
+            <a href="{{route('delete',$member['id'])}}">delete</a>
         </td>
     </tr>
      
     @endforeach
 </table>
+<a href="{{route('add')}}">add member</a>
 <div>
     {{$members->links()}}
 </div>
